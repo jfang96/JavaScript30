@@ -38,10 +38,30 @@
   .three {
     background: coral;
   }
+
 </style>
 
 <button></button>
 <script>
+  const divs = document.querySelectorAll('div');
+  const button = document.querySelector('button');
+
+  function logText(e) {
+    console.log(this.classList.value);
+    // e.stopPropagation(); // Stop bubbling
+    // console.log(this);
+  }
+
+  divs.forEach(div => div.addEventListener('click', logText, {
+    capture: false, // false: bubble down, true: bubble up
+    once: true // true: listen for click once and then unfind itself
+  }));
+
+  button.addEventListener('click', () => {
+    console.log('Click!!!');
+  }, {
+    once: true // Can only click button once
+  });
 
 </script>
 </body>
